@@ -1,0 +1,7 @@
+{
+  "name": "newdelta-fe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
