@@ -1,0 +1,34 @@
+ion-grid {
+  height: 100vh;
+  ion-row {
+    display: grid;
+    ion-col {
+      display: flex;
+      // .buttons {
+      //   display: flex;
+      //   justify-content: center;
+      // }
+      .image-logo {
+        display: flex;
+        justify-content: flex-start;
+        margin: 3% 0 0 3%;
+        width: 157px;
+        height: 110px;
+      }
+      .image-car {
+        display: flex;
+        justify-content: flex-end;
+        width: 417px;
+        height: 235px;
+      }
+      ion-icon {
+        color: #fff;
+        align-self: end;
+        padding-right: 12.5%;
+        margin-bottom: -2%;
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
