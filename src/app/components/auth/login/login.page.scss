@@ -1,34 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+}
 ion-grid {
-  height: 100vh;
+  height: 50vh;
   ion-row {
     display: grid;
-    ion-col {
+    .image-logo {
       display: flex;
-      // .buttons {
-      //   display: flex;
-      //   justify-content: center;
-      // }
-      .image-logo {
-        display: flex;
-        justify-content: flex-start;
-        margin: 3% 0 0 3%;
-        width: 157px;
-        height: 110px;
-      }
-      .image-car {
-        display: flex;
-        justify-content: flex-end;
-        width: 417px;
-        height: 235px;
-      }
-      ion-icon {
-        color: #fff;
-        align-self: end;
-        padding-right: 12.5%;
-        margin-bottom: -2%;
-        width: 25px;
-        height: 25px;
+    }
+    .image-car {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .slogan {
+      ion-text {
+        text-align: center;
       }
     }
+  }
+}
+
+.datos {
+  height: calc(100vh - 50vh);
+  background-color: var(--ion-color-primary);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  padding: 20px;
+  .input{
+    width: 70%;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  ion-button{
+    width: 70%;
+    display: block;
+    border-radius: 15px;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+  ion-label{
+    width: 50%;
+    padding: 0;
+    color: #fff;
+    display: block;
+    background-color: var(--ion-color-primary);
+    font-size: 15px;
+    margin: auto;
   }
 }
