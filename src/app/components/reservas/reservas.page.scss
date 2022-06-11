@@ -1,0 +1,20 @@
+ion-grid {
+  height: 100vh;
+  ion-row {
+    display: grid;
+    .image-logo {
+      display: flex;
+      margin: 4% 0 0 4%;
+    }
+    ion-col {
+      ion-text {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 1.3rem;
+        font-family: Be Vietman Pro;
+        font-weight: 700;
+        margin: 7% 0 0 7%;
+      }
+    }
+  }
+}

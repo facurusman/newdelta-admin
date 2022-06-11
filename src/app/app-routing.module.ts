@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./components/auth/login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'reservas',
+    loadChildren: () => import('./components/reservas/reservas.module').then( m => m.ReservasPageModule)
   },
+
 
 ];
 
