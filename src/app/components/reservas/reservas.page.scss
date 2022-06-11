@@ -1,5 +1,10 @@
+* {
+  font-family: 'Asap', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
 ion-grid {
-  height: 100vh;
+  height: 30vh;
   ion-row {
     display: grid;
     .image-logo {
@@ -14,6 +19,26 @@ ion-grid {
         font-family: Be Vietman Pro;
         font-weight: 700;
         margin: 7% 0 0 7%;
+      }
+    }
+  }
+}
+
+.reservas {
+  height: calc(100vh - 30vh);
+  ion-card {
+    margin-bottom: 0;
+    ion-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      ion-label {
+        background-color: var(--ion-color-primary);
+        color: #fff;
+      }
+      ion-button {
+        width: 35%;
+        margin: 5% calc((100% - 35%) / 2) 0% calc((100% - 35%) / 2);
       }
     }
   }
