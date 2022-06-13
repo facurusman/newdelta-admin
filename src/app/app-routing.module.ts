@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'reservas',
     loadChildren: () => import('./components/reservas/reservas.module').then( m => m.ReservasPageModule)
   },
+  {
+    path: 'booking-acept',
+    loadChildren: () => import('./components/booking-acept/booking-acept.module').then( m => m.BookingAceptPageModule)
+  },
 
 
 ];

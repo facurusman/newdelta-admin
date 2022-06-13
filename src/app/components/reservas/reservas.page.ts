@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reservas',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reservas.page.scss'],
 })
 export class ReservasPage implements OnInit {
+  constructor(private router: Router, private modalCtrl: ModalController) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  goToBookingAceptPage() {
+    this.router.navigateByUrl('booking-acept');
   }
-
 }

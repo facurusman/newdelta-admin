@@ -5,7 +5,7 @@
         <ion-img src="../../../../assets/images/newdelta-logo 2.png"></ion-img>
       </ion-col>
       <ion-col>
-        <ion-text color="primary">Reservas</ion-text>
+        <ion-label color="primary" class="title">Reservas</ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -14,12 +14,16 @@
       <ion-row>
         <ion-col>
           <ion-card color="primary">
-            <ion-card-header>Nombre de la persona</ion-card-header>
+            <ion-card-header>
+              <ion-card-title class="card-title">
+                nombre de la persona
+              </ion-card-title>
+            </ion-card-header>
             <ion-card-content>
-              <ion-label>Desde <ion-label>Direccion Punto A</ion-label></ion-label>
-              <ion-label>Hasta <ion-label>Direccion Punto B</ion-label></ion-label>
-              <ion-label>Precio <ion-label>Precio</ion-label></ion-label>
-              <ion-button color="secondary">Aceptar</ion-button>
+              <ion-label>Desde: <ion-label>Direccion Punto A</ion-label></ion-label>
+              <ion-label>Hasta: <ion-label>Direccion Punto B</ion-label></ion-label>
+              <ion-label>Precio: <ion-label>Precio</ion-label></ion-label>
+              <ion-button color="secondary" (click)="goToBookingAceptPage()">Aceptar</ion-button>
             </ion-card-content>
           </ion-card>
         </ion-col>

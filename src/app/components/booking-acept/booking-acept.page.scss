@@ -1,0 +1,29 @@
+ion-grid {
+  height: 30vh;
+  ion-row {
+    display: grid;
+    .image-logo {
+      display: flex;
+      margin: 4% 0 0 4%;
+    }
+    ion-col {
+      .title {
+        display: flex;
+        justify-content: flex-start;
+        font-family: "Be Vietnam Pro", sans-serif;
+        font-size: 2.3rem;
+        font-weight: 700;
+        text-align: center;
+        margin: 7% 0 0 7%;
+      }
+      .acept-text {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-family: "Asap", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+  }
+}
