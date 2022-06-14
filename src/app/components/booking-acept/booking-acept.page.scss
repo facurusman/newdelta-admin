@@ -1,3 +1,11 @@
+ion-header{
+  background-color: #fff;
+  ion-toolbar{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+}
+
 ion-grid {
   height: 30vh;
   ion-row {
