@@ -25,6 +25,6 @@ export class LoginPage implements OnInit {
     }
   }
   goToBookingsPage() {
-    this.router.navigateByUrl('reservas')
+    this.router.navigateByUrl('reservas');
   }
 }

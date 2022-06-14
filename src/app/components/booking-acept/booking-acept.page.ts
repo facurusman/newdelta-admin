@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ViewWillEnter, ViewWillLeave } from '@ionic/angular';
 
 @Component({
   selector: 'app-booking-acept',
   templateUrl: './booking-acept.page.html',
   styleUrls: ['./booking-acept.page.scss'],
 })
-export class BookingAceptPage implements OnInit {
+export class BookingAceptPage implements OnInit, ViewWillLeave {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  ionViewWillLeave(){
+    location.reload();
   }
 
 }
