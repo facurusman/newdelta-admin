@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,11 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   showPassword = false;
   passwordToggleIcon = 'eye';
+  isLoading = false;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {}
@@ -25,6 +28,14 @@ export class LoginPage implements OnInit {
     }
   }
   goToBookingsPage() {
-    this.router.navigateByUrl('reservas');
+    this.loadingCtrl.create({ message: 'Ingresando...' }).then((loadingEl) => {
+      loadingEl.present();
+      setTimeout(() => {
+        loadingEl.dismiss();
+        this.router.navigateByUrl('reservas');
+      }, 1000);
+    });
   }
+
+  onForgotPassword(){}
 }

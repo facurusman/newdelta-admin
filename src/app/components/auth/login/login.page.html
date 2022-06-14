@@ -1,6 +1,14 @@
 <ion-content color="light">
   <ion-grid>
     <ion-row>
+      <ion-col
+      size-md="6"
+      offset-md="3"
+      class="ion-text-center"
+      *ngIf="isLoading"
+    >
+      <ion-spinner color="primary"></ion-spinner>
+    </ion-col>
       <ion-col class="image-logo">
         <ion-img
           src="../../../../assets/images/newdelta-logo 2.png"
@@ -36,6 +44,6 @@
       ></ion-icon>
     </ion-item>
     <ion-button type="button" color="secondary" (click)="goToBookingsPage()"> Ingresar </ion-button>
-    <ion-text color="light">Olvide mi contraseña</ion-text>
+    <ion-text color="light" (click)="onForgotPassword()">Olvide mi contraseña</ion-text>
   </ion-list>
 </ion-content>

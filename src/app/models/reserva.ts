@@ -1,6 +1,6 @@
 export class Reserva {
   readonly id: number;
-  readonly nombre: string;
+  readonly email: string;
   readonly desde: string;
   readonly hasta: string;
   readonly precio: number;
@@ -8,21 +8,21 @@ export class Reserva {
 
   constructor({
     id,
-    nombre,
+    email,
     desde,
     hasta,
     precio,
     patente,
   }: {
       id: number;
-    nombre: string;
+    email: string;
     desde: string;
     hasta: string;
     precio: number;
     patente: string;
     }) {
     this.id = id;
-    this.nombre = nombre;
+    this.email = email;
     this.desde = desde;
     this.hasta = hasta;
     this.precio = precio;
