@@ -1,6 +1,14 @@
 <ion-content>
   <ion-grid>
     <ion-row>
+      <ion-col
+        size-md="6"
+        offset-md="3"
+        class="ion-text-center"
+        *ngIf="isLoading"
+      >
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
       <ion-col class="image-logo">
         <ion-img src="../../../../assets/images/newdelta-logo 2.png"></ion-img>
       </ion-col>
@@ -16,14 +24,24 @@
           <ion-card color="primary" *ngFor="let element of reservas">
             <ion-card-header>
               <ion-card-title class="card-title">
-               {{element.email}}
+                {{element.email}}
               </ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <ion-label>Desde: <ion-label>{{element.desde}}</ion-label></ion-label>
-              <ion-label>Hasta: <ion-label>{{element.hasta}}</ion-label></ion-label>
-              <ion-label>Precio: <ion-label>{{element.precio}}</ion-label></ion-label>
-              <ion-button color="secondary" (click)="goToBookingAceptPage(element.id)">Aceptar</ion-button>
+              <ion-label
+                >Desde: <ion-label>{{element.desde}}</ion-label></ion-label
+              >
+              <ion-label
+                >Hasta: <ion-label>{{element.hasta}}</ion-label></ion-label
+              >
+              <ion-label
+                >Precio: <ion-label>{{element.precio}}</ion-label></ion-label
+              >
+              <ion-button
+                color="secondary"
+                (click)="goToBookingAceptPage(element.id)"
+                >Aceptar</ion-button
+              >
             </ion-card-content>
           </ion-card>
         </ion-col>
