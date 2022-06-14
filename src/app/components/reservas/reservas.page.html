@@ -23,7 +23,10 @@
               <ion-label>Desde: <ion-label>Direccion Punto A</ion-label></ion-label>
               <ion-label>Hasta: <ion-label>Direccion Punto B</ion-label></ion-label>
               <ion-label>Precio: <ion-label>Precio</ion-label></ion-label>
-              <ion-button color="secondary" (click)="goToBookingAceptPage()">Aceptar</ion-button>
+              <div class="buttons">
+                <ion-button color="danger" (click)="goToBookingAceptPage()">Rechazar</ion-button>
+                <ion-button color="secondary" (click)="goToBookingAceptPage()">Aceptar</ion-button>
+              </div>
             </ion-card-content>
           </ion-card>
         </ion-col>

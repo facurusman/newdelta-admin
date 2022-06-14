@@ -47,9 +47,12 @@ ion-grid {
         text-align: center;
         margin-left: 7%;
       }
-      ion-button {
-        width: 35%;
-        margin: 5% calc((100% - 35%) / 2) 0% calc((100% - 35%) / 2);
+      .buttons{
+        //width: 35%;
+        //margin: 5% calc((100% - 35%) / 2) 0% calc((100% - 35%) / 2);
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
       }
     }
     .card-title {
