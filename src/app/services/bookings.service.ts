@@ -10,11 +10,12 @@ export class BookingsService {
   constructor(private readonly http: HttpClient) {}
 
   getBookings() {
-    return this.http.get(`${environment.apiBookings}`);
+    return this.http.post(`${environment.apiBookings}/activas`, []);
   }
-  aceptBooking(idReserva: number) {
+  aceptBooking(patente: string, idReserva: number) {
     return this.http.post(`${environment.apiBookings}/completar`, {
-      idReserva,
+      patente,
+      idReserva
     });
   }
 }

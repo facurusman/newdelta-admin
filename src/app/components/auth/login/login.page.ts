@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,18 @@ export class LoginPage implements OnInit {
   passwordToggleIcon = 'eye';
   isLoading = false;
 
+  patente: string;
+  password: string;
+
   constructor(
     private router: Router,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private authService: AuthService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.authService.autoAuthUser();
+  }
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
@@ -37,5 +44,23 @@ export class LoginPage implements OnInit {
     });
   }
 
-  onForgotPassword(){}
+  onForgotPassword() {}
+
+  getToken() {
+    return this.authService.getToken();
+  }
+  getAuthStatusListener() {
+    return this.authService.getAuthStatusListener();
+  }
+  getIsAuth() {
+    return this.authService.isAuthenticated;
+  }
+  onLogout() {
+    return this.authService.logout();
+  }
+
+  onLogin(patente: string, password: string) {
+    this.authService.postLogin(patente, password);
+    this.goToBookingsPage();
+  }
 }

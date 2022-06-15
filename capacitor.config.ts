@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'newdelta-fe',
+  appId: 'com.newdelta.app',
+  appName: 'New Delta',
   webDir: 'www',
   bundledWebRuntime: false
 };

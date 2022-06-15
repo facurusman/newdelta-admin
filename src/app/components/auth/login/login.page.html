@@ -25,7 +25,7 @@
   <ion-text>Ingresa y asignate una reserva al instante</ion-text>
   <ion-list class="datos">
     <ion-item lines="none" class="input">
-      <ion-input type="text" placeholder="Patente"></ion-input>
+      <ion-input type="text" placeholder="Patente" [(ngModel)]="patente"></ion-input>
     </ion-item>
     <ion-item lines="none" class="input">
       <ion-input
@@ -33,9 +33,10 @@
         ngModel
         name="password"
         required
-        minlength="6"
+        minlength="4"
         #passwordCtrl="ngModel"
         placeholder="Contraseña"
+        [(ngModel)]="password"
       ></ion-input>
       <ion-icon
         slot="end"
@@ -43,7 +44,7 @@
         (click)="togglePassword()"
       ></ion-icon>
     </ion-item>
-    <ion-button type="button" color="secondary" (click)="goToBookingsPage()"> Ingresar </ion-button>
+    <ion-button type="button" color="secondary" (click)="onLogin(patente, password)"> Ingresar </ion-button>
     <ion-text color="light" (click)="onForgotPassword()">Olvide mi contraseña</ion-text>
   </ion-list>
 </ion-content>
