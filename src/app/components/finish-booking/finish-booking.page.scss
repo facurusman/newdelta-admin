@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ion-grid {
+  height: 60vh;
+  ion-row {
+    display: grid;
+    .image-logo {
+      display: flex;
+      margin: 4% 0 0 4%;
+    }
+    .image-car {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+ion-text {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 10%;
+  font-family: "Asap", sans-serif;
+  font-weight: 500;
+}
+
+.datos {
+  height: calc(100vh - 69.6vh);
+  background-color: var(--ion-color-primary);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  padding: 20px;
+  ion-button {
+    width: 70%;
+    display: block;
+    border-radius: 15px;
+    margin: calc(15.2vh - 45px) auto auto auto;
+  }
+  ion-label {
+    width: 50%;
+    padding: 0;
+    color: #fff;
+    display: block;
+    background-color: var(--ion-color-primary);
+    font-size: 15px;
+    margin: auto;
+  }
+}

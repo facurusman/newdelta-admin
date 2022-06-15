@@ -7,7 +7,7 @@ import { ViewWillEnter, ViewWillLeave } from '@ionic/angular';
   templateUrl: './booking-acept.page.html',
   styleUrls: ['./booking-acept.page.scss'],
 })
-export class BookingAceptPage implements OnInit, ViewWillLeave {
+export class BookingAceptPage implements OnInit, ViewWillLeave, ViewWillEnter {
 
   constructor(private router: Router) { }
 
@@ -15,6 +15,11 @@ export class BookingAceptPage implements OnInit, ViewWillLeave {
   }
   ionViewWillLeave(){
     location.reload();
+  }
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.router.navigateByUrl('/finish-booking')
+    }, 5000);
   }
 
 }
