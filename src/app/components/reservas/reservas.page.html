@@ -20,8 +20,8 @@
   <div class="reservas">
     <ion-grid>
       <ion-row>
-        <ion-col>
-          <ion-card color="primary" *ngFor="let element of reservas">
+        <ion-col *ngIf="!isChoferAsignada">
+          <ion-card color="primary" *ngFor="let element of reservas" >
             <ion-card-header>
               <ion-card-title class="card-title">
                 {{element.email}}
@@ -40,7 +40,7 @@
               <ion-button
                 color="secondary"
                 (click)="goToBookingAceptPage(element.id)"
-                >Aceptar</ion-button
+                >Asignar</ion-button
               >
             </ion-card-content>
           </ion-card>

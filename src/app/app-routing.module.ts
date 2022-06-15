@@ -26,7 +26,6 @@ const routes: Routes = [
       import('./components/reservas/reservas.module').then(
         (m) => m.ReservasPageModule
       ),
-    canActivate: [AuthGuard],
   },
   {
     path: 'booking-acept',
@@ -34,7 +33,6 @@ const routes: Routes = [
       import('./components/booking-acept/booking-acept.module').then(
         (m) => m.BookingAceptPageModule
       ),
-    canActivate: [AuthGuard],
   },
 ];
 

@@ -15,6 +15,10 @@ export class ReservasPage implements OnInit {
   reservas: Reserva[];
   patente: string;
   isLoading = false;
+  isAsignada = false;
+  isChoferAsignada = false;
+  idReserva;
+
   constructor(
     private router: Router,
     private bookingService: BookingsService,
@@ -32,16 +36,22 @@ export class ReservasPage implements OnInit {
     });
   }
   goToBookingAceptPage(id: number) {
-    this.loadingCtrl.create({ message: 'Aceptando...' }).then((loadingEl) => {
+    this.loadingCtrl.create({ message: 'Asignando...' }).then((loadingEl) => {
       loadingEl.present();
-      this.bookingService.aceptBooking(this.patente, id).subscribe(() => {
-        loadingEl.dismiss();
-        this.router.navigateByUrl('booking-acept');
-      });
+      this.bookingService
+        .asignarBooking(id, this.patente)
+        .subscribe((response) => {
+          if (response.hasOwnProperty('status')) {
+            loadingEl.dismiss();
+            this.router.navigateByUrl('booking-acept');
+          } else {
+            this.router.navigateByUrl('reservas');
+          }
+        });
     });
   }
-  getPatente(){
-    this.authService.getPatente().patente.then((res) =>{
+  getPatente() {
+    this.authService.getPatente().patente.then((res) => {
       this.patente = res.value;
     });
   }
