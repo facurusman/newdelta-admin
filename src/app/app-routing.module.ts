@@ -34,6 +34,13 @@ const routes: Routes = [
         (m) => m.BookingAceptPageModule
       ),
   },
+  {
+    path: 'finish-booking',
+    loadChildren: () =>
+      import('./components/finish-booking/finish-booking.module').then(
+        (m) => m.FinishBookingPageModule
+      ),
+  },
 ];
 
 @NgModule({

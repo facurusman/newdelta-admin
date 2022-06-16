@@ -45,6 +45,9 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
+        <ion-col *ngIf="isChoferAsignada">
+          <ion-text>Ya tienes una reserva asignada, completala!</ion-text>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </div>

@@ -18,7 +18,7 @@ export class BookingAceptPage implements OnInit, ViewWillLeave, ViewWillEnter {
   }
   ionViewWillEnter() {
     setTimeout(() => {
-      this.router.navigateByUrl('/finish-booking')
+      this.router.navigateByUrl('/finish-booking');
     }, 5000);
   }
 

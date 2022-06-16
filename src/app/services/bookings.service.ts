@@ -9,7 +9,6 @@ import { Storage } from '@capacitor/storage';
   providedIn: 'root',
 })
 export class BookingsService {
-  idReserva: any;
   constructor(private readonly http: HttpClient) {}
 
   getBookings() {
@@ -23,7 +22,7 @@ export class BookingsService {
   }
 
   getIdStorage(){
-    this.getBookingData();
+    return this.getBookingData();
   }
 
   asignarBooking(id: number, auto: string) {
@@ -39,10 +38,9 @@ export class BookingsService {
   }
 
   private getBookingData() {
-    Storage.get({
+    const idReserva = Storage.get({
       key: 'idReserva',
-    }).then((res) => {
-      this.idReserva = res.value;
     });
+    return idReserva;
   }
 }

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./finish-booking.page.scss'],
 })
 export class FinishBookingPage implements OnInit {
+  isLoading = false;
 
   constructor() { }
 

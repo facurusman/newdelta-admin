@@ -29,6 +29,13 @@ export class ReservasPage implements OnInit {
   ngOnInit() {
     this.allBookings();
     this.getPatente();
+    this.bookingService.getIdStorage().then((res) =>{
+      this.idReserva = res.value;
+      if (this.idReserva) {
+        this.isChoferAsignada = true;
+        this.router.navigateByUrl('/finish-booking');
+      }
+    });
   }
   allBookings() {
     return this.bookingService.getBookings().subscribe((bookings) => {

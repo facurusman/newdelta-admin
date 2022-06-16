@@ -16,6 +16,7 @@ export class AuthService {
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
   private expirationDate;
+  private expirationData: any;
   constructor(private http: HttpClient, private router: Router) {}
 
   getToken() {
@@ -61,12 +62,13 @@ export class AuthService {
       return;
     }
     const now = new Date();
-    const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+    const expiresIn =  new Date(Date.parse(authInformation.expirationDate)).getTime() - new Date().getTime();
     if (expiresIn > 0) {
-      this.token = authInformation.token;
+      const token = authInformation.token.then((res) => res.value);
       this.isAuthenticated = true;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
+      return token;
     }
   }
 
@@ -122,8 +124,8 @@ export class AuthService {
     });
     this.expirationDate = Storage.get({
       key: 'expiration',
-    }).then((res) => {
-      this.expirationDate = res;
+    }).then((res) =>{
+      this.expirationData = res.value;
     });
     const patente = Storage.get({
       key: 'patente',
@@ -133,7 +135,7 @@ export class AuthService {
     }
     return {
       token,
-      expirationDate: new Date(this.expirationDate),
+      expirationDate: this.expirationData,
       patente,
     };
   }
