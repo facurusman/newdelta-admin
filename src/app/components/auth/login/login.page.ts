@@ -35,8 +35,14 @@ export class LoginPage implements OnInit {
         this.isAuthenticated.token.then((token) =>{
           this.isAuthenticated.patente.then((patente) =>{
             this.bookingService.bookingAsignada(patente.value).subscribe((response) =>{
-              if (response[0].estado === '1' && response[0].auto === patente.value && token) {
-                this.router.navigateByUrl('/finish-booking');
+              if (response[0] === undefined) {
+                if (token && patente.value) {
+                  this.router.navigateByUrl('reservas');
+                }
+              }else{
+                if (response[0].estado === '1' && response[0].auto === patente.value && token) {
+                  this.router.navigateByUrl('/finish-booking');
+                }
               }
             });
           });
