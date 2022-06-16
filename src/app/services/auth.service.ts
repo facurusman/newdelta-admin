@@ -49,7 +49,6 @@ export class AuthService {
             now.getTime() + expiresInDuration * 1000
           );
           this.saveAuthData(token, expirationDate, patente);
-          this.router.navigateByUrl('/reservas');
         } else {
           this.authStatusListener.next(false);
         }
@@ -68,7 +67,7 @@ export class AuthService {
       this.isAuthenticated = true;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
-      return token;
+      return authInformation;
     }
   }
 

@@ -31,13 +31,19 @@ export class LoginPage implements OnInit {
     if (this.isAuthenticated === undefined) {
       this.router.navigateByUrl('login');
     }else{
-      this.isAuthenticated.then((token) =>{
-        this.bookingService.getIdStorage().then((res) =>{
-          if (res.value && token) {
-            this.router.navigateByUrl('/finish-booking');
-          }
+      if (this.isAuthenticated) {
+        this.isAuthenticated.token.then((token) =>{
+          this.isAuthenticated.patente.then((patente) =>{
+            this.bookingService.bookingAsignada(patente.value).subscribe((response) =>{
+              if (response[0].estado === '1' && response[0].auto === patente.value && token) {
+                this.router.navigateByUrl('/finish-booking');
+              }
+            });
+          });
         });
-      });
+      }else{
+        return;
+      }
     }
   }
 
@@ -49,21 +55,24 @@ export class LoginPage implements OnInit {
       this.passwordToggleIcon = 'eye';
     }
   }
-  goToBookingsPage() {
+  goToBookingsPage(patente: string) {
     this.loadingCtrl.create({ message: 'Ingresando...' }).then((loadingEl) => {
       loadingEl.present();
       setTimeout(() => {
         loadingEl.dismiss();
-        this.bookingService.getIdStorage().then((res) =>{
-          this.idReserva = res.value;
-          if (this.idReserva) {
+      }, 1000);
+      this.bookingService.getIdStorage().then((res) =>{
+        this.idReserva = res.value;
+        this.bookingService.bookingAsignada(patente).subscribe((response) =>{
+          if (response[0].estado === '1' && response[0].auto === patente) {
             this.isChoferAsignada = true;
             this.router.navigateByUrl('/finish-booking');
           }else{
             this.router.navigateByUrl('reservas');
           }
         });
-      }, 1000);
+        this.router.navigateByUrl('reservas');
+      });
     });
   }
 
@@ -84,6 +93,6 @@ export class LoginPage implements OnInit {
 
   onLogin(patente: string, password: string) {
     this.authService.postLogin(patente, password);
-    this.goToBookingsPage();
+    this.goToBookingsPage(patente);
   }
 }
