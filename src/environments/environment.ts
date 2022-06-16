@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBookings: 'http://localhost:3000/api/booking',
-  apiUsers: 'http://localhost:3000/api/user',
+  apiBookings: 'https://newdelta-backend.herokuapp.com/api/booking',
+  apiUsers: 'https://newdelta-backend.herokuapp.com/api/user',
 };
 
 /*
