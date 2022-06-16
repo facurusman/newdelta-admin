@@ -28,14 +28,24 @@ export class ReservasPage implements OnInit {
 
   ngOnInit() {
     this.allBookings();
-    this.getPatente();
-    this.bookingService.getIdStorage().then((res) =>{
-      this.idReserva = res.value;
-      if (this.idReserva) {
-        this.isChoferAsignada = true;
-        this.router.navigateByUrl('/finish-booking');
-      }
-    });
+    this.getPatente().patente.then((res) => {
+      this.patente = res.value;
+      this.bookingService.getIdStorage().then((resEl) =>{
+        this.idReserva = resEl.value;
+        if (this.idReserva) {
+          this.isChoferAsignada = true;
+          this.router.navigateByUrl('/finish-booking');
+        }else{
+          this.bookingService.bookingAsignada(res.value).subscribe((response) =>{
+            if (response[0] === undefined) {
+              this.router.navigateByUrl('reservas');
+            }else{
+              this.router.navigateByUrl('/finish-booking');
+            }
+          });
+        }
+      });
+    });;
   }
   allBookings() {
     return this.bookingService.getBookings().subscribe((bookings) => {
@@ -58,8 +68,6 @@ export class ReservasPage implements OnInit {
     });
   }
   getPatente() {
-    this.authService.getPatente().patente.then((res) => {
-      this.patente = res.value;
-    });
+    return this.authService.getPatente();
   }
 }

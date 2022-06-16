@@ -30,24 +30,30 @@ export class LoginPage implements OnInit {
     this.isAuthenticated = this.authService.autoAuthUser();
     if (this.isAuthenticated === undefined) {
       this.router.navigateByUrl('login');
-    }else{
+    } else {
       if (this.isAuthenticated) {
-        this.isAuthenticated.token.then((token) =>{
-          this.isAuthenticated.patente.then((patente) =>{
-            this.bookingService.bookingAsignada(patente.value).subscribe((response) =>{
-              if (response[0] === undefined) {
-                if (token && patente.value) {
-                  this.router.navigateByUrl('reservas');
+        this.isAuthenticated.token.then((token) => {
+          this.isAuthenticated.patente.then((patente) => {
+            this.bookingService
+              .bookingAsignada(patente.value)
+              .subscribe((response) => {
+                if (response[0] === undefined) {
+                  if (token && patente.value) {
+                    this.router.navigateByUrl('reservas');
+                  }
+                } else {
+                  if (
+                    response[0].estado === '1' &&
+                    response[0].auto === patente.value &&
+                    token
+                  ) {
+                    this.router.navigateByUrl('/finish-booking');
+                  }
                 }
-              }else{
-                if (response[0].estado === '1' && response[0].auto === patente.value && token) {
-                  this.router.navigateByUrl('/finish-booking');
-                }
-              }
-            });
+              });
           });
         });
-      }else{
+      } else {
         return;
       }
     }
@@ -61,24 +67,13 @@ export class LoginPage implements OnInit {
       this.passwordToggleIcon = 'eye';
     }
   }
-  goToBookingsPage(patente: string) {
+  goToBookingsPage() {
     this.loadingCtrl.create({ message: 'Ingresando...' }).then((loadingEl) => {
       loadingEl.present();
       setTimeout(() => {
         loadingEl.dismiss();
-      }, 1000);
-      this.bookingService.getIdStorage().then((res) =>{
-        this.idReserva = res.value;
-        this.bookingService.bookingAsignada(patente).subscribe((response) =>{
-          if (response[0].estado === '1' && response[0].auto === patente) {
-            this.isChoferAsignada = true;
-            this.router.navigateByUrl('/finish-booking');
-          }else{
-            this.router.navigateByUrl('reservas');
-          }
-        });
         this.router.navigateByUrl('reservas');
-      });
+      }, 1000);
     });
   }
 
@@ -99,6 +94,6 @@ export class LoginPage implements OnInit {
 
   onLogin(patente: string, password: string) {
     this.authService.postLogin(patente, password);
-    this.goToBookingsPage(patente);
+    this.goToBookingsPage();
   }
 }
