@@ -60,15 +60,19 @@ export class AuthService {
     if (!authInformation) {
       return;
     }
-    const now = new Date();
-    const expiresIn =  new Date(Date.parse(authInformation.expirationDate)).getTime() - new Date().getTime();
-    if (expiresIn > 0) {
-      const token = authInformation.token.then((res) => res.value);
-      this.isAuthenticated = true;
-      this.setAuthTimer(expiresIn / 1000);
-      this.authStatusListener.next(true);
-      return authInformation;
-    }
+    const information = authInformation.expirationDate
+    .then((res) => new Date(Date.parse(res.value)).getTime() - new Date().getTime());
+    const printValue = async () => {
+      const v = await information;
+      if (v > 0) {
+        this.token = authInformation.token;
+        this.isAuthenticated = true;
+        this.setAuthTimer(v / 1000);
+        this.authStatusListener.next(true);
+        return this.isAuthenticated;
+      }
+    };
+    printValue();
   }
 
   logout() {
@@ -80,7 +84,7 @@ export class AuthService {
     this.clearAuthData();
     this.router.navigateByUrl('');
   }
-  getPatente(){
+  getPatente() {
     return this.getAuthData();
   }
 
@@ -123,8 +127,6 @@ export class AuthService {
     });
     this.expirationDate = Storage.get({
       key: 'expiration',
-    }).then((res) =>{
-      this.expirationData = res.value;
     });
     const patente = Storage.get({
       key: 'patente',
@@ -134,7 +136,7 @@ export class AuthService {
     }
     return {
       token,
-      expirationDate: this.expirationData,
+      expirationDate: this.expirationDate,
       patente,
     };
   }

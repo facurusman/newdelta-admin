@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './components/auth/login/auth.guard';
+import { IsAuthGuard } from './components/auth/login/is-auth.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
       import('./components/auth/login/login.module').then(
         (m) => m.LoginPageModule
       ),
+      canActivate:[IsAuthGuard]
   },
   {
     path: 'reservas',
@@ -26,6 +28,7 @@ const routes: Routes = [
       import('./components/reservas/reservas.module').then(
         (m) => m.ReservasPageModule
       ),
+      canActivate:[AuthGuard]
   },
   {
     path: 'booking-acept',
@@ -33,6 +36,7 @@ const routes: Routes = [
       import('./components/booking-acept/booking-acept.module').then(
         (m) => m.BookingAceptPageModule
       ),
+      canActivate:[AuthGuard]
   },
   {
     path: 'finish-booking',
@@ -40,6 +44,7 @@ const routes: Routes = [
       import('./components/finish-booking/finish-booking.module').then(
         (m) => m.FinishBookingPageModule
       ),
+      canActivate:[AuthGuard]
   },
 ];
 

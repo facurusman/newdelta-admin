@@ -1,0 +1,6 @@
+{
+	"appId": "com.newdelta.app",
+	"appName": "New Delta",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

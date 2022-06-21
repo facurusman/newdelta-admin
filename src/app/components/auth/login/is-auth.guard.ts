@@ -1,31 +1,31 @@
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  Router
-} from '@angular/router';
 import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  //private isAuth: boolean = false;
-  constructor(private authService: AuthService, private router: Router) { }
+export class IsAuthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean | Observable<boolean> | Promise<boolean> {
-
+  ): boolean {
     const isAuth = this.authService.getIsAuth();
     console.log(isAuth);
 
     if (!isAuth) {
-      this.router.navigate(['']);
+      return true;
     }
-    return isAuth;
+    const url = isAuth ? 'reservas' : '';
+    this.router.navigate([url]);
+    return true;
   }
 }
