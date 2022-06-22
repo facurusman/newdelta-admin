@@ -22,7 +22,6 @@ export class BookingsService {
     return this.http.post(`${environment.apiBookings}/activas`, []);
   }
   aceptBooking(patente: string, idReserva: number) {
-    console.log(patente, +idReserva);
     return this.http.post(`${environment.apiBookings}/completar`, {
       patente,
       idReserva,

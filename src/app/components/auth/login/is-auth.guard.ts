@@ -19,8 +19,6 @@ export class IsAuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     const isAuth = this.authService.getIsAuth();
-    console.log(isAuth);
-
     if (!isAuth) {
       return true;
     }

@@ -85,7 +85,7 @@ export class AuthService {
     this.router.navigateByUrl('');
   }
   getPatente() {
-    return this.getAuthData();
+    return this.getAuthData().patente;
   }
 
   private setAuthTimer(duration: number) {

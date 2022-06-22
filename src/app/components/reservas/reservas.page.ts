@@ -13,7 +13,7 @@ import { BookingsService } from 'src/app/services/bookings.service';
 })
 export class ReservasPage implements OnInit {
   reservas: Reserva[];
-  patente: string;
+  patente: any;
   isLoading = false;
   isAsignada = false;
   isChoferAsignada = false;
@@ -29,6 +29,11 @@ export class ReservasPage implements OnInit {
   ngOnInit() {
     this.allBookings();
     this.bookingService.autoAuthUser();
+    this.patente = this.getPatente().then((res) => res.value);
+    const printPatente = async () =>{
+      this.patente = await this.patente;
+    };
+    printPatente();
   }
   allBookings() {
     return this.bookingService.getBookings().subscribe((bookings) => {
