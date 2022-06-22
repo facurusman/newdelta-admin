@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthData } from '../models/AuthData';
 import { Storage } from '@capacitor/storage';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class AuthService {
   private authStatusListener = new Subject<boolean>();
   private expirationDate;
   private expirationData: any;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private alertCtrl: AlertController) {}
 
   getToken() {
     return this.token;
@@ -60,8 +61,9 @@ export class AuthService {
     if (!authInformation) {
       return;
     }
-    const information = authInformation.expirationDate
-    .then((res) => new Date(Date.parse(res.value)).getTime() - new Date().getTime());
+    const information = authInformation.expirationDate.then(
+      (res) => new Date(Date.parse(res.value)).getTime() - new Date().getTime()
+    );
     const printValue = async () => {
       const v = await information;
       if (v > 0) {
@@ -140,4 +142,5 @@ export class AuthService {
       patente,
     };
   }
+
 }

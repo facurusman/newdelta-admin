@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
@@ -71,8 +72,10 @@ export class LoginPage implements OnInit {
     this.loadingCtrl.create({ message: 'Ingresando...' }).then((loadingEl) => {
       loadingEl.present();
       setTimeout(() => {
+        this.isLoading = false
         loadingEl.dismiss();
         this.router.navigateByUrl('reservas');
+        //location.reload();
       }, 1000);
     });
   }
@@ -92,8 +95,15 @@ export class LoginPage implements OnInit {
     return this.authService.logout();
   }
 
-  onLogin(patente: string, password: string) {
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+    const patente = form.value.patente;
+    const password = form.value.password;
+    this.isLoading = true;
     this.authService.postLogin(patente, password);
     this.goToBookingsPage();
+    form.reset();
   }
 }
