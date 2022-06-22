@@ -35,7 +35,7 @@ export class BookingsService {
     return this.http.post(`${environment.apiBookings}/asignada`, { patente });
   }
 
-  private saveBookingData(idReserva: any) {
+  saveBookingData(idReserva: any) {
     Storage.set({
       key: 'idReserva',
       value: idReserva,

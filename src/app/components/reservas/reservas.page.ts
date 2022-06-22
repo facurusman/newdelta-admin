@@ -30,22 +30,25 @@ export class ReservasPage implements OnInit {
     this.allBookings();
     this.getPatente().patente.then((res) => {
       this.patente = res.value;
-      this.bookingService.getIdStorage().then((resEl) =>{
+      this.bookingService.getIdStorage().then((resEl) => {
         this.idReserva = resEl.value;
         if (this.idReserva) {
           this.isChoferAsignada = true;
           this.router.navigateByUrl('/finish-booking');
-        }else{
-          this.bookingService.bookingAsignada(res.value).subscribe((response) =>{
-            if (response[0] === undefined) {
-              this.router.navigateByUrl('reservas');
-            }else{
-              this.router.navigateByUrl('/finish-booking');
-            }
-          });
+        } else {
+          this.bookingService
+            .bookingAsignada(res.value)
+            .subscribe((response) => {
+              if (response[0] === undefined) {
+                this.router.navigateByUrl('reservas');
+              } else {
+                this.bookingService.saveBookingData(response[0].id);
+                this.router.navigateByUrl('/finish-booking');
+              }
+            });
         }
       });
-    });;
+    });
   }
   allBookings() {
     return this.bookingService.getBookings().subscribe((bookings) => {
