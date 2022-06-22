@@ -53,6 +53,7 @@ export class BookingsService {
         this.bookingAsignada(await patente).subscribe((response) =>{
           if(response[0]){
             this.isAsignada = true;
+            this.saveBookingData(response[0].id);
             this.router.navigateByUrl('finish-booking');
           }else{
             this.isAsignada = false;
@@ -64,7 +65,7 @@ export class BookingsService {
     }
   }
 
-  private saveBookingData(idReserva: any) {
+  saveBookingData(idReserva: any) {
     Storage.set({
       key: 'idReserva',
       value: idReserva,
