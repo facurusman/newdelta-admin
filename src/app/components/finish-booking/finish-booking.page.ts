@@ -27,8 +27,9 @@ export class FinishBookingPage implements OnInit {
   }
 
   goToReservasPage() {
+    const id = +this.idReserva;
     this.bookingService
-      .aceptBooking(this.patente, this.idReserva)
+      .aceptBooking(this.patente, id)
       .subscribe((response) => {
         Storage.remove({
           key: 'idReserva',
