@@ -21,11 +21,9 @@ export class BookingsService {
   getBookings() {
     return this.http.post(`${environment.apiBookings}/activas`, []);
   }
-  aceptBooking(patente: string, idReserva: number) {
-    return this.http.post(`${environment.apiBookings}/completar`, {
-      patente,
-      idReserva,
-    });
+  aceptBooking(idReserva: number) {
+    console.log(idReserva);
+    return this.http.post(`${environment.apiBookings}/completar/${idReserva}`, {});
   }
 
   getIdStorage(){
@@ -53,7 +51,7 @@ export class BookingsService {
           if(response[0]){
             this.isAsignada = true;
             this.saveBookingData(response[0].id);
-            this.router.navigateByUrl('finish-booking');
+            this.router.navigateByUrl(`finish-booking/${response[0].id}`);
           }else{
             this.isAsignada = false;
             return;

@@ -31,7 +31,7 @@ const routes: Routes = [
       canActivate:[AuthGuard]
   },
   {
-    path: 'booking-acept',
+    path: 'booking-acept/:id',
     loadChildren: () =>
       import('./components/booking-acept/booking-acept.module').then(
         (m) => m.BookingAceptPageModule
@@ -39,7 +39,7 @@ const routes: Routes = [
       canActivate:[AuthGuard]
   },
   {
-    path: 'finish-booking',
+    path: 'finish-booking/:id',
     loadChildren: () =>
       import('./components/finish-booking/finish-booking.module').then(
         (m) => m.FinishBookingPageModule

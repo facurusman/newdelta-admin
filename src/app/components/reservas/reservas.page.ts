@@ -46,12 +46,8 @@ export class ReservasPage implements OnInit {
       this.bookingService
         .asignarBooking(id, this.patente)
         .subscribe((response) => {
-          if (response.hasOwnProperty('status')) {
             loadingEl.dismiss();
-            this.router.navigateByUrl('booking-acept');
-          } else {
-            this.router.navigateByUrl('reservas');
-          }
+            this.router.navigateByUrl(`booking-acept/${id}`);
         });
     });
   }

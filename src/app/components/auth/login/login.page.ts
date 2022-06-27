@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
                     response[0].auto === patente.value &&
                     token
                   ) {
-                    this.router.navigateByUrl('/finish-booking');
+                    this.router.navigateByUrl(`/finish-booking/${response[0].id}`);
                   }
                 }
               });
